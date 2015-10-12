@@ -112,21 +112,21 @@
     // on nsurlsessiond crashes, sessionWithConfiguration can block for a long time,
     // but from the background make sure we set up synhronously in didFinishLaunchingWithOptions
     if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground) {
-        dispatch_sync([DDLog loggingQueue], block);
+        dispatch_sync([SVLog loggingQueue], block);
     } else {
-        dispatch_async([DDLog loggingQueue], block);
+        dispatch_async([SVLog loggingQueue], block);
     }
 }
 
 // retries any files that may have errored
 - (void)uploadArchivedFiles
 {
-    dispatch_async([DDLog loggingQueue], ^{
+    dispatch_async([SVLog loggingQueue], ^{
         [self.session getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downloadTasks) {
-            dispatch_async([DDLog loggingQueue], ^{ @autoreleasepool {
+            dispatch_async([SVLog loggingQueue], ^{ @autoreleasepool {
                 NSArray *fileInfos = [self unsortedLogFileInfos];
                 NSMutableSet *filesToUpload = [NSMutableSet setWithCapacity:[fileInfos count]];
-                for (DDLogFileInfo *fileInfo in fileInfos) {
+                for (SVLogFileInfo *fileInfo in fileInfos) {
                     if (fileInfo.isArchived) {
                         [filesToUpload addObject:fileInfo.filePath];
                     }
@@ -193,7 +193,7 @@
 {
     PDLog(@"BackgroundUploadLogFileManager: upload: %@ didCompleteWithError: %@", filePath, error);
     
-    dispatch_async([DDLog loggingQueue], ^{ @autoreleasepool {
+    dispatch_async([SVLog loggingQueue], ^{ @autoreleasepool {
         if (!error) {
             NSError *deleteError;
             [[NSFileManager defaultManager] removeItemAtPath:filePath error:&deleteError];
@@ -220,7 +220,7 @@
 - (void)URLSessionDidFinishEventsForBackgroundURLSession:(NSURLSession *)session
 {
     // ensure all deletes are complete before calling completion
-    dispatch_async([DDLog loggingQueue], ^{
+    dispatch_async([SVLog loggingQueue], ^{
         dispatch_async(dispatch_get_main_queue(), ^{
             if (self.completionHandler) {
                 self.completionHandler();

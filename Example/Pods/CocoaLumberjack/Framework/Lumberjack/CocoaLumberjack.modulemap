@@ -1,0 +1,39 @@
+framework module CocoaLumberjack {
+	umbrella header "CocoaLumberjack.h"
+
+	export *
+	module * { export * }
+	
+	//Until Xcode adds support for textual headers
+	//textual header "SVLogMacros.h"
+	//We have to use config_macros and define ddLogLevel on the command line
+	config_macros ddLogLevel
+	
+	exclude header "SVLog+LOGV.h"
+	exclude header "SVLegacyMacros.h"
+}
+
+explicit module CocoaLumberjack.SVContextFilterLogFormatter {
+	header "SVContextFilterLogFormatter.h"
+	export *
+}
+
+explicit module CocoaLumberjack.SVDispatchQueueLogFormatter {
+	header "SVDispatchQueueLogFormatter.h"
+	export *
+}
+
+explicit module CocoaLumberjack.SVMultiFormatter {
+	header "SVMultiFormatter.h"
+	export *
+}
+
+explicit module CocoaLumberjack.SVASLLogCapture {
+	header "SVASLLogCapture.h"
+	export *
+}
+
+explicit module CocoaLumberjack.SVAbstractDatabaseLogger {
+	header "SVAbstractDatabaseLogger.h"
+	export *
+}

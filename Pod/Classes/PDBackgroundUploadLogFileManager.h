@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #define DD_LEGACY_MACROS 0
-#import "DDLog.h"
-#import "DDFileLogger.h"
+#import "SVLog.h"
+#import "SVFileLogger.h"
 
 /**
  Optional delegate to notify about uploads
@@ -33,7 +33,7 @@
 /**
  A CocoaLumberjack log file manager that uses NSURLSession background transfer to upload files when they roll. Uploads are retried everytime another file is rolled (as per DDFileLogger's maximum file size and rolling frequency), until the file is no longer available (as per DDLogFileManager's maximum number of log files and disk quota). Log files are immediately removed from log directory upon successful upload.
  */
-@interface PDBackgroundUploadLogFileManager : DDLogFileManagerDefault<NSURLSessionDelegate,NSURLSessionTaskDelegate>
+@interface PDBackgroundUploadLogFileManager : SVLogFileManagerDefault<NSURLSessionDelegate,NSURLSessionTaskDelegate>
 
 /**
  Initializes

@@ -1,0 +1,1 @@
+../../../CocoaLumberjack/Classes/SVASLLogCapture.h

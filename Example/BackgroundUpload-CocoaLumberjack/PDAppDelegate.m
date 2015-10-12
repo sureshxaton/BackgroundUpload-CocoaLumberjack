@@ -9,16 +9,15 @@
 #import "PDAppDelegate.h"
 
 #define DD_LEGACY_MACROS 0
-#import "DDLog.h"
-#import "DDFileLogger.h"
+#import "SVLog.h"
+#import "SVFileLogger.h"
 #import "PDBackgroundUploadLogFileManager.h"
 
-const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @interface PDAppDelegate()
 
 @property (strong, nonatomic) PDBackgroundUploadLogFileManager *fileManager;
-@property (strong, nonatomic) DDFileLogger *fileLogger;
+@property (strong, nonatomic) SVFileLogger *fileLogger;
 
 @end
 
@@ -30,8 +29,8 @@ const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [request setHTTPMethod:@"POST"];
     
     self.fileManager = [[PDBackgroundUploadLogFileManager alloc] initWithUploadRequest:request];
-    self.fileLogger = [[DDFileLogger alloc] initWithLogFileManager:self.fileManager];
-    [DDLog addLogger:self.fileLogger];
+    self.fileLogger = [[SVFileLogger alloc] initWithLogFileManager:self.fileManager];
+    [SVLog addLogger:self.fileLogger];
     
     return YES;
 }
