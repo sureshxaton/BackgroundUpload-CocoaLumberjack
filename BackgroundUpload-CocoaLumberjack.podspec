@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "BackgroundUpload-CocoaLumberjack"
-  s.version          = "0.3.4"
+  s.version          = "0.3.5"
   s.summary          = "Remote logging via NSURLSession transfer to upload NSLog logger logs to an HTTP server such as loggly."
 #  s.description      = <<-DESC
 #                      A LogFileManager that uses NSURLSession background transfer to upload files when they roll.
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.homepage         = "https://github.com/pushd/BackgroundUpload-CocoaLumberjack"
   s.license          = 'MIT'
   s.author           = { "Eric Jensen" => "ej@pushd.com" }
-  s.source           = { :git => "https://github.com/pushd/BackgroundUpload-CocoaLumberjack.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/sureshXaton/BackgroundUpload-CocoaLumberjack.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/ej'
 
   s.platform     = :ios, '7.0'
